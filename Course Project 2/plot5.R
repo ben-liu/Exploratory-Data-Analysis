@@ -10,13 +10,14 @@ mv.code= SCC[grep(".*Vehicle|.*Motor",SCC$EI.Sector),]
 mv=NEI[NEI$SCC %in% mv.code$SCC & NEI$fips %in% "24510",]
 x = with(mv,aggregate(Emissions,by=list(year),sum))
 names(x) = c("Year","Emissions")
+
+png(file="plot5.png")
+par(mar=c(5,5,4,2)+0.1)
 with(x,plot(Year,Emissions,type="l",
             ylab = expression('Total PM'[2.5]*" Emission"),
             main="Total PM2.5 emission from motor vehicle \n from 1999 to 2008 in Baltimore City")
             )
     )
-
-dev.copy(png,file="plot5.png")
 dev.off()
 
 

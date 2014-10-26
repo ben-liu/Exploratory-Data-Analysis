@@ -10,12 +10,14 @@ SCC <- readRDS("./exdata-data-NEI_data/Source_Classification_Code.rds")
 bal= NEI[NEI$fips %in% "24510",]
 x = with(bal,aggregate(Emissions,by=list(year),sum))
 names(x) = c("Year","Emissions")
+
+png(file="plot2.png")
+par(mar=c(5,5,4,2)+0.1)
 with(x,plot(Year,Emissions,type="l",
             ylab = expression('Total PM'[2.5]*" Emission"),
             main="Total PM2.5 emission in \n Baltimore City from 1999 to 2008")
             )
      )
-dev.copy(png,file="plot2.png")
 dev.off()
 
 
